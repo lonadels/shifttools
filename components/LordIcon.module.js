@@ -24,20 +24,3 @@ const LordIconModule = (props) => {
 };
 
 export default LordIconModule
-
-LordIconModule.defaultProps = {
-    size: 24,
-    color: "#ffffff",
-    trigger: "loop",
-    state: "hover",
-}
-
-LordIconModule.propTypes = {
-    src: PropTypes.string.isRequired,
-    size: 24,
-    color: PropTypes.string,
-    trigger: 'hover' | 'click' | 'loop' | 'loop-on-hover' | 'morph' | 'morph-two-way',
-    state:  'intro' | 'hover' | 'hover-1' | 'hover-2' | 'hover-3' | 'morph',
-    target: PropTypes.object,
-    // style: PropTypes.
-};

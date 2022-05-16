@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
-import LordIconModule from "./LordIcon.module";
 
 const LordIcon = dynamic(() => import('../components/LordIcon.module'), {
     ssr: false,
