@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.14.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.9.0",
     "@emotion/server": "^11.4.0",
@@ -16,6 +17,10 @@
     "@fontsource/roboto": "^4.5.7",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.7.0",
+    "@mui/x-data-grid": "^5.11.0",
+    "@mui/x-date-pickers": "^5.0.0-alpha.3",
+    "lord-icon-element": "^3.4.0",
+    "lottie-web": "^5.9.4",
     "next": "12.1.6",
     "prop-types": "^15.8.1",
     "react": "18.1.0",

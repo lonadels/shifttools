@@ -6,6 +6,11 @@ import Button from '@mui/material/Button';
 import ProTip from '../components/ProTip';
 import Link from '../components/Link';
 import Copyright from '../components/Copyright';
+import dynamic from "next/dynamic";
+
+const DynamicLordIcon = dynamic(() => import('../components/LordIcon'), {
+    ssr: false
+});
 
 export default function About() {
     return (
@@ -14,8 +19,10 @@ export default function About() {
                 <Typography variant="h4" component="h1" gutterBottom>
                     Next.js example
                 </Typography>
-                <Button variant="contained" component={Link} noLinkStyle href="/">
-                    Go to the main page
+                <Button id="target" variant="contained" component={Link} noLinkStyle href="/">
+                    <span>Go to the main page{' '}
+                    <DynamicLordIcon />
+                    </span>
                 </Button>
                 <ProTip />
                 <Copyright />
