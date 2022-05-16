@@ -17,6 +17,7 @@ export default function About() {
                     <Button id="goHome"
                             variant="outlined"
                             component={Link}
+                            size={"large"}
                             noLinkStyle
                             href="/">
                         Вернуться на главную
@@ -29,6 +30,7 @@ export default function About() {
                             id="buyBobs"
                             variant="contained"
                             component={Link}
+                            size={"large"}
                             noLinkStyle
                             href="/404">
                         Купить бобы
