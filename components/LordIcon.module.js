@@ -7,8 +7,6 @@ defineLordIconElement(lottie.loadAnimation);
 const LordIconModule = (props) => {
     const {src, size, color, target, trigger, state} = props;
 
-    console.log(props);
-
     return (
         <lord-icon trigger={trigger}
                colors={`primary:${color}`}
