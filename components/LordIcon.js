@@ -16,10 +16,11 @@ LordIcon.defaultProps = {
 
 LordIcon.propTypes = {
     src: PropTypes.string.isRequired,
-    size: 24,
+    size: PropTypes.number,
     color: PropTypes.string,
     trigger: 'hover' | 'click' | 'loop' | 'loop-on-hover' | 'morph' | 'morph-two-way',
-    state:  'intro' | 'hover' | 'hover-1' | 'hover-2' | 'hover-3' | 'morph',
+    state: 'intro' | 'hover' | 'hover-1' | 'hover-2' | 'hover-3' | 'morph',
     target: PropTypes.object,
+    class: PropTypes.string
     // style: PropTypes.
 };

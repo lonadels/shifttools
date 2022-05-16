@@ -1,16 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 
-// Add support for the sx prop for consistency with the other branches.
 const Anchor = styled('a')({});
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-    const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
+    const {to, linkAs, replace, scroll, shallow, prefetch, locale, ...other} = props;
 
     return (
         <NextLink
@@ -40,8 +39,6 @@ NextLinkComposed.propTypes = {
     to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
 };
 
-// A styled version of the Next.js Link component:
-// https://nextjs.org/docs/api-reference/next/link
 const Link = React.forwardRef(function Link(props, ref) {
     const {
         activeClassName = 'active',
@@ -53,7 +50,7 @@ const Link = React.forwardRef(function Link(props, ref) {
         noLinkStyle,
         prefetch,
         replace,
-        role, // Link don't have roles.
+        role,
         scroll,
         shallow,
         ...other
@@ -77,7 +74,7 @@ const Link = React.forwardRef(function Link(props, ref) {
     }
 
     const linkAs = linkAsProp || as;
-    const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch, locale };
+    const nextjsProps = {to: href, linkAs, replace, scroll, shallow, prefetch, locale};
 
     if (noLinkStyle) {
         return <NextLinkComposed className={className} ref={ref} {...nextjsProps} {...other} />;

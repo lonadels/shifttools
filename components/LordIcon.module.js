@@ -1,6 +1,5 @@
 import lottie from 'lottie-web';
 import {defineLordIconElement} from 'lord-icon-element';
-import PropTypes from "prop-types";
 
 defineLordIconElement(lottie.loadAnimation);
 
@@ -9,15 +8,16 @@ const LordIconModule = (props) => {
 
     return (
         <lord-icon trigger={trigger}
-               colors={`primary:${color}`}
-               state={state}
-               target={target}
-               src={`https://cdn.lordicon.com/${src}.json`}
-               style={{
-                   width: size,
-                   height: size,
-                   paddingBottom: 2
-               }}/>
+                   colors={`primary:${color}`}
+                   state={state}
+                   target={target}
+                   src={`https://cdn.lordicon.com/${src}.json`}
+                   style={{
+                       width: size,
+                       height: size,
+                       paddingBottom: 2
+                   }}
+        />
     );
 };
 
