@@ -8,8 +8,8 @@ import Link from '../components/Link';
 import Copyright from '../components/Copyright';
 import dynamic from "next/dynamic";
 
-const DynamicLordIcon = dynamic(() => import('../components/LordIcon'), {
-    ssr: false
+const LordIcon = dynamic(() => import('../components/LordIcon'), {
+    ssr: false,
 });
 
 export default function About() {
@@ -19,10 +19,9 @@ export default function About() {
                 <Typography variant="h4" component="h1" gutterBottom>
                     Next.js example
                 </Typography>
-                <Button id="target" variant="contained" component={Link} noLinkStyle href="/">
-                    <span>Go to the main page{' '}
-                    <DynamicLordIcon />
-                    </span>
+                <Button id="goHome" variant="contained" component={Link} noLinkStyle href="/">
+                    <span> Go to the main page&nbsp;
+                        <LordIcon state="hover-3" src="gwlkhzue" trigger="loop-on-hover" target="#goHome" /></span>
                 </Button>
                 <ProTip />
                 <Copyright />
