@@ -12,7 +12,8 @@ export default function About() {
             <Box sx={{my: 4}}>
                 <Typography variant="h4" gutterBottom component="div">Информация</Typography>
                 <p>Купите бобы, либо Бобы купят вас.</p>
-                <Stack direction="row" spacing={1}>
+                <Stack direction={{ xs: 'column', sm: 'row' }}
+                       spacing={1}>
                     <Button id="goHome"
                             variant="outlined"
                             component={Link}
