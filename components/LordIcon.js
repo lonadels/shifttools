@@ -1,30 +1,12 @@
-import lottie from 'lottie-web';
-import {defineLordIconElement} from 'lord-icon-element';
+import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
-import MyApp from "../pages/_app";
+import LordIconModule from "./LordIcon.module";
 
-defineLordIconElement(lottie.loadAnimation);
+const LordIcon = dynamic(() => import('../components/LordIcon.module'), {
+    ssr: false,
+});
 
-const LordIcon = (props) => {
-    const {src, size, color, target, trigger, state} = props;
-
-    console.log(props);
-
-    return (
-        <lord-icon trigger={trigger}
-               colors={`primary:${color}`}
-               state={state}
-               target={target}
-               src={`https://cdn.lordicon.com/${src}.json`}
-               style={{
-                   width: size,
-                   height: size,
-                   paddingBottom: 2
-               }}/>
-    );
-};
-
-export default LordIcon
+export default LordIcon;
 
 LordIcon.defaultProps = {
     size: 24,

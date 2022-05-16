@@ -6,25 +6,21 @@ import Button from '@mui/material/Button';
 import ProTip from '../components/ProTip';
 import Link from '../components/Link';
 import Copyright from '../components/Copyright';
-import dynamic from "next/dynamic";
-
-const LordIcon = dynamic(() => import('../components/LordIcon'), {
-    ssr: false,
-});
+import LordIcon from "../components/LordIcon";
 
 export default function About() {
     return (
         <Container maxWidth="sm">
-            <Box sx={{ my: 4 }}>
+            <Box sx={{my: 4}}>
                 <Typography variant="h4" component="h1" gutterBottom>
                     Next.js example
                 </Typography>
                 <Button id="goHome" variant="contained" component={Link} noLinkStyle href="/">
                     <span> Go to the main page&nbsp;
-                        <LordIcon state="hover-3" src="gwlkhzue" trigger="loop-on-hover" target="#goHome" /></span>
+                        <LordIcon state="hover-3" src="gwlkhzue" trigger="loop-on-hover" target="#goHome"/></span>
                 </Button>
-                <ProTip />
-                <Copyright />
+                <ProTip/>
+                <Copyright/>
             </Box>
         </Container>
     );
