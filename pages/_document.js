@@ -6,7 +6,7 @@ import createEmotionCache from '../utility/createEmotionCache';
 export default class MyDocument extends Document {
     render() {
         return (
-            <Html lang="en">
+            <Html lang="ru">
                 <Head>
                     <meta charSet="UTF-8" />
                     <meta name="description" content="App with tools for shift managers" />

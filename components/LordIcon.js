@@ -21,6 +21,6 @@ LordIcon.propTypes = {
     trigger: 'hover' | 'click' | 'loop' | 'loop-on-hover' | 'morph' | 'morph-two-way',
     state: 'intro' | 'hover' | 'hover-1' | 'hover-2' | 'hover-3' | 'morph',
     target: PropTypes.object,
-    class: PropTypes.string
+    className: PropTypes.string
     // style: PropTypes.
 };
