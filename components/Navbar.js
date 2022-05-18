@@ -10,9 +10,9 @@ const Navbar = () => {
     const router = useRouter()
 
     const Links = [
-        {to: "/", label: "", iconFilled: "hwixfird", iconOutlined: "igpbsrza", trigger: "morph", state: "morph-2"},
-        {to: "/about", label: "", iconFilled: "elkhjhci", iconOutlined: "dklbhvrt"},
-        {to: "/profile", label: "", iconFilled: "elkhjhci", iconOutlined: "dklbhvrt"}
+        {to: "/", label: "Главная", iconFilled: "hwixfird", iconOutlined: "igpbsrza", trigger: "morph", state: "morph-2"},
+        {to: "/about", label: "Инфо", iconFilled: "hvnymaak", iconOutlined: "aixyixpa"},
+        {to: "/profile", label: "Профиль", iconFilled: "elkhjhci", iconOutlined: "dklbhvrt"}
     ];
 
     const getCurrentPage = () =>
@@ -26,7 +26,6 @@ const Navbar = () => {
 
     return (<Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
         <BottomNavigation
-            showLabels
             value={value}
             onChange={(event, newValue) => {
                 const href = `/${Links[newValue].to}`;
@@ -35,8 +34,7 @@ const Navbar = () => {
             }}
         >
             {Links.map((link, index) =>
-                (<BottomNavigationAction label={link.label}
-                                         key={index}
+                (<BottomNavigationAction key={index}
                                          id={`${link.label}Nav`}
                                          icon={
                                              <LordIcon state={link?.state || "hover"}
