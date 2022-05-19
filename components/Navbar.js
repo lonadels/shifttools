@@ -1,18 +1,17 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import {BottomNavigation, BottomNavigationAction, Paper} from "@mui/material";
-import LordIcon from "./LordIcon";
-import lightTheme from "../styles/theme/lightTheme";
 
+import {BottomNavigation, BottomNavigationAction, Paper} from "@mui/material";
 
 const Navbar = () => {
     const router = useRouter()
 
     const Links = [
-        {to: "/", label: "Главная", iconFilled: "hwixfird", iconOutlined: "igpbsrza", trigger: "morph", state: "morph-2"},
-        {to: "/about", label: "Инфо", iconFilled: "hvnymaak", iconOutlined: "aixyixpa"},
-        {to: "/profile", label: "Профиль", iconFilled: "elkhjhci", iconOutlined: "dklbhvrt"}
+        {to: "/colculator", label: "Персонал", icon: "people"},
+        {to: "/transfers", label: "Трансферы", icon: "airplane"},
+        {to: "/counters", label: "Считалки", icon: "calculator"},
+        {to: "/profile", label: "Профиль", icon: "person-circle"},
     ];
 
     const getCurrentPage = () =>
@@ -24,8 +23,11 @@ const Navbar = () => {
         setValue(getCurrentPage());
     }, [router.pathname])
 
-    return (<Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
+    return (<Paper sx={{
+        position: 'fixed', bottom: 0, left: 0, right: 0,
+    }} elevation={3}>
         <BottomNavigation
+            showLabels
             value={value}
             onChange={(event, newValue) => {
                 const href = `/${Links[newValue].to}`;
@@ -35,13 +37,10 @@ const Navbar = () => {
         >
             {Links.map((link, index) =>
                 (<BottomNavigationAction key={index}
-                                         id={`${link.label}Nav`}
-                                         icon={
-                                             <LordIcon state={link?.state || "hover"}
-                                                       src={index === value ? link.iconFilled : link.iconOutlined}
-                                                       trigger={link?.trigger || "hover"}
-                                                       color={lightTheme.palette.primary.main}
-                                                       target={`#${link.label}Nav`}/>}
+                                         label={link.label}
+                                         id={`${link.icon}Nav`}
+                                         icon={<ion-icon name={link.icon + (index === value ? "" : "-outline")}
+                                                         style={{fontSize: 24}}/>}
                 />)
             )}
 

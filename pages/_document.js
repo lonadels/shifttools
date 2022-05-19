@@ -2,15 +2,18 @@ import * as React from 'react';
 import Document, {Head, Html, Main, NextScript} from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../utility/createEmotionCache';
+import lightTheme from "../styles/theme/lightTheme";
 
 export default class MyDocument extends Document {
     render() {
         return (
             <Html lang="ru">
                 <Head>
-                    <meta charSet="UTF-8" />
-                    <meta name="description" content="App with tools for shift managers" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
+                    <meta charSet="UTF-8"/>
+                    <meta name="description" content="App with tools for shift managers"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
+                    <meta name="theme-color" media="(prefers-color-scheme: light)" content={lightTheme.palette.primary.main}/>
+                    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#272727"/>
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -19,6 +22,8 @@ export default class MyDocument extends Document {
                 <body>
                 <Main/>
                 <NextScript/>
+                <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+                <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
                 </body>
             </Html>
         );
