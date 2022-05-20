@@ -13,7 +13,6 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import darkTheme from "../styles/theme/darkTheme";
 import Head from "next/head";
 
-
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp = (props) => {

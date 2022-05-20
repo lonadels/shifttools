@@ -4,30 +4,24 @@ import {useRouter} from "next/router";
 
 import {BottomNavigation, BottomNavigationAction, Paper, SvgIcon} from "@mui/material";
 
-import {ReactComponent as PersonCircle} from "ionicons/dist/svg/person-circle.svg"
-import {ReactComponent as PersonCircleOutline} from "ionicons/dist/svg/person-circle-outline.svg"
+import {LocalShippingOutlined, LocalShippingRounded} from "@mui/icons-material";
+import {AccountCircleOutlined, AccountCircleRounded} from "@mui/icons-material";
+import {GroupOutlined, GroupRounded} from "@mui/icons-material";
+import {CalculateOutlined, CalculateRounded} from "@mui/icons-material";
 
-import {ReactComponent as People} from "ionicons/dist/svg/people.svg"
-import {ReactComponent as PeopleOutline} from "ionicons/dist/svg/people-outline.svg"
-
-import {ReactComponent as Walk} from "ionicons/dist/svg/walk.svg"
-import {ReactComponent as WalkOutline} from "ionicons/dist/svg/walk-outline.svg"
-
-import {ReactComponent as Calculator} from "ionicons/dist/svg/calculator.svg"
-import {ReactComponent as CalculatorOutline} from "ionicons/dist/svg/calculator-outline.svg"
 
 const Navbar = () => {
     const router = useRouter()
 
     const Links = [
-        {to: "/staff", label: "Персонал", icon: [People, PeopleOutline]},
-        {to: "/transfers", label: "Трансферы", icon: [Walk, WalkOutline]},
-        {to: "/counters", label: "Считалки", icon: [Calculator, CalculatorOutline]},
-        {to: "/profile", label: "Профиль", icon: [PersonCircle, PersonCircleOutline]},
+        {to: "staff", label: "Персонал", icon: [GroupRounded, GroupOutlined]},
+        {to: "transfers", label: "Трансферы", icon: [LocalShippingRounded, LocalShippingOutlined]},
+        {to: "counters", label: "Считалки", icon: [CalculateRounded, CalculateOutlined]},
+        {to: "profile", label: "Профиль", icon: [AccountCircleRounded, AccountCircleOutlined]},
     ];
 
     const getCurrentPage = () =>
-        Links.findIndex((link) => link.to === router.pathname);
+        Links.findIndex((link) => link.to === router.pathname.split("/")[1]);
 
     const [value, setValue] = useState(getCurrentPage());
 
@@ -51,8 +45,7 @@ const Navbar = () => {
                 (<BottomNavigationAction key={index}
                                          label={link.label}
                                          id={`Nav${index}`}
-                                         icon={<SvgIcon component={index === value ? link.icon[0] : link.icon[1]}
-                                                        inheritViewBox/>}
+                                         icon={<SvgIcon component={index === value ? link.icon[0] : link.icon[1]}/>}
                 />)
             )}
         </BottomNavigation>

@@ -10,7 +10,6 @@ export default function Counters() {
 
                 </Box>
             </Container>
-
         </div>
     );
 }

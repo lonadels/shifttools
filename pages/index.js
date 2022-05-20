@@ -5,7 +5,6 @@ export default function Home() {
         <div>
             <Container maxWidth="md">
                 <Box>
-
                 </Box>
             </Container>
         </div>
