@@ -4,7 +4,12 @@ import {useRouter} from "next/router";
 
 import {BottomNavigation, BottomNavigationAction, Paper, SvgIcon} from "@mui/material";
 
-import {LocalShippingOutlined, LocalShippingRounded} from "@mui/icons-material";
+import {
+    ConstructionOutlined,
+    ConstructionRounded,
+    LocalShippingOutlined,
+    LocalShippingRounded
+} from "@mui/icons-material";
 import {AccountCircleOutlined, AccountCircleRounded} from "@mui/icons-material";
 import {GroupOutlined, GroupRounded} from "@mui/icons-material";
 import {CalculateOutlined, CalculateRounded} from "@mui/icons-material";
@@ -16,7 +21,7 @@ const Navbar = () => {
     const Links = [
         {to: "staff", label: "Персонал", icon: [GroupRounded, GroupOutlined]},
         {to: "transfers", label: "Трансферы", icon: [LocalShippingRounded, LocalShippingOutlined]},
-        {to: "counters", label: "Считалки", icon: [CalculateRounded, CalculateOutlined]},
+        {to: "tools", label: "Инструменты", icon: [ConstructionRounded, ConstructionOutlined]},
         {to: "profile", label: "Профиль", icon: [AccountCircleRounded, AccountCircleOutlined]},
     ];
 
