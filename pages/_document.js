@@ -11,8 +11,8 @@ export default class MyDocument extends Document {
                 <Head>
                     <meta charSet="UTF-8"/>
                     <meta name="description" content="App with tools for shift managers"/>
-                    <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
-                    <meta name="theme-color" media="(prefers-color-scheme: light)" content={lightTheme.palette.primary.main}/>
+                    <meta name="theme-color" media="(prefers-color-scheme: light)"
+                          content={lightTheme.palette.primary.main}/>
                     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#272727"/>
                     <link
                         rel="stylesheet"
@@ -22,8 +22,6 @@ export default class MyDocument extends Document {
                 <body>
                 <Main/>
                 <NextScript/>
-                <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-                <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
                 </body>
             </Html>
         );
