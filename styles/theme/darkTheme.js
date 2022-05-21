@@ -12,7 +12,6 @@ const darkTheme = createTheme({
         MuiBottomNavigationAction: {
             styleOverrides: {
                 root: {
-                    fontWeight: 700,
                     color: "rgba(255,255,255,0.5)",
                     '&.Mui-selected': {
                         color: "#ffffff"

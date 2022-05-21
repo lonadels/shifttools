@@ -5,14 +5,15 @@ import {useRouter} from "next/router";
 import {BottomNavigation, BottomNavigationAction, Paper, SvgIcon} from "@mui/material";
 
 import {
+    AccountCircleOutlined,
+    AccountCircleRounded,
     ConstructionOutlined,
     ConstructionRounded,
+    GroupOutlined,
+    GroupRounded,
     LocalShippingOutlined,
     LocalShippingRounded
 } from "@mui/icons-material";
-import {AccountCircleOutlined, AccountCircleRounded} from "@mui/icons-material";
-import {GroupOutlined, GroupRounded} from "@mui/icons-material";
-import {CalculateOutlined, CalculateRounded} from "@mui/icons-material";
 
 
 const Navbar = () => {
