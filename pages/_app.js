@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {CacheProvider} from '@emotion/react';
-import {Backdrop, Box, CircularProgress, CssBaseline, Fab, ThemeProvider} from '@mui/material';
+import {Box, CircularProgress, CssBaseline, Fade, Grid, ThemeProvider} from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import createEmotionCache from '../utility/createEmotionCache';
 import lightTheme from '../styles/theme/lightTheme';
 import '../styles/globals.css';
 import Navbar from "../components/Navbar";
-import ScrollTop from "../components/ScrollTop";
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import darkTheme from "../styles/theme/darkTheme";
 import Head from "next/head";
 
@@ -39,21 +37,21 @@ const MyApp = (props) => {
                         rel="stylesheet"/>
                 </Head>
                 <CssBaseline/>
-                <Box id={"main"}
-                     sx={{overflow: 'auto', position: 'fixed', left: 0, right: 0, bottom: 56, top: 0}}>
-                    <Component {...pageProps} />
-                    <ScrollTop {...props}>
-                        <Fab color="secondary" size="small" aria-label="scroll back to top">
-                            <KeyboardArrowUpIcon/>
-                        </Fab>
-                    </ScrollTop>
-                </Box>
-                <Backdrop
-                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                    open={backdrop}
-                >
-                    <CircularProgress color="inherit" />
-                </Backdrop>
+                    <Box id={"main"}
+                         sx={{overflow: 'auto', position: 'fixed', left: 0, right: 0, bottom: 56, top: 0}}>
+                        <Fade in={backdrop} unmountOnExit  >
+                        <Grid
+                                position={"absolute"}
+                                container
+                                height={'100%'}
+                                direction="column"
+                                justifyContent="center"
+                                alignItems="center">
+                                <CircularProgress color="primary"/>
+                        </Grid>
+                        </Fade>
+                        <Fade in={!backdrop} unmountOnExit ><Box><Component {...pageProps} /></Box></Fade>
+                    </Box>
                 <Navbar backdrop={setBackdrop}/>
             </ThemeProvider>
         </CacheProvider>
