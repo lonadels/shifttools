@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {CacheProvider} from '@emotion/react';
-import {Box, CssBaseline, Fab, ThemeProvider} from '@mui/material';
+import {Backdrop, Box, CircularProgress, CssBaseline, Fab, ThemeProvider} from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import createEmotionCache from '../utility/createEmotionCache';
@@ -18,6 +18,8 @@ const clientSideEmotionCache = createEmotionCache();
 const MyApp = (props) => {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+    const [backdrop, setBackdrop] = useState(false);
 
     const theme = React.useMemo(
         () => prefersDarkMode ? darkTheme : lightTheme,
@@ -46,7 +48,13 @@ const MyApp = (props) => {
                         </Fab>
                     </ScrollTop>
                 </Box>
-                <Navbar/>
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={backdrop}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+                <Navbar backdrop={setBackdrop}/>
             </ThemeProvider>
         </CacheProvider>
     );

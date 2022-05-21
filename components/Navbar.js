@@ -16,7 +16,7 @@ import {
 } from "@mui/icons-material";
 
 
-const Navbar = () => {
+const Navbar = (props) => {
     const router = useRouter()
 
     const Links = [
@@ -42,8 +42,11 @@ const Navbar = () => {
             showLabels
             value={value}
             onChange={(event, newValue) => {
+                props.backdrop(true);
                 const href = `/${Links[newValue].to}`;
-                router.push(href, undefined, {shallow: true})
+                router.push(href, undefined, {shallow: true}).finally(() => {
+                    props.backdrop(false);
+                });
                 setValue(newValue);
             }}
         >
