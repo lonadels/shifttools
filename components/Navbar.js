@@ -23,7 +23,7 @@ const Navbar = (props) => {
         {to: "staff", label: "Персонал", icon: [GroupRounded, GroupOutlined]},
         {to: "transfers", label: "Трансферы", icon: [LocalShippingRounded, LocalShippingOutlined]},
         {to: "tools", label: "Инструменты", icon: [ConstructionRounded, ConstructionOutlined]},
-        {to: "profile", label: "Профиль", icon: [AccountCircleRounded, AccountCircleOutlined]},
+        {to: "", label: "Профиль", icon: [AccountCircleRounded, AccountCircleOutlined]},
     ];
 
     const getCurrentPage = () =>
