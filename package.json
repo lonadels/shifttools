@@ -35,7 +35,8 @@
     "react-dom": "18.1.0",
     "react-redux": "^8.0.1",
     "react-transition-group": "^4.4.2",
-    "react-window": "^1.8.7"
+    "react-window": "^1.8.7",
+    "webrix": "^1.5.10"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",

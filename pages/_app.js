@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {CacheProvider} from '@emotion/react';
 import {Box, CircularProgress, CssBaseline, Fade, Grid, ThemeProvider} from '@mui/material';
@@ -10,6 +10,7 @@ import '../styles/globals.css';
 import Navbar from "../components/Navbar";
 import darkTheme from "../styles/theme/darkTheme";
 import Head from "next/head";
+import {useRouter} from "next/router";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -23,6 +24,11 @@ const MyApp = (props) => {
         () => prefersDarkMode ? darkTheme : lightTheme,
         [prefersDarkMode],
     );
+
+    useEffect(() => {
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    }, []);
+
 
     return (
         <CacheProvider value={emotionCache}>
