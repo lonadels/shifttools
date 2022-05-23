@@ -1,5 +1,14 @@
 import * as React from 'react';
-import {Divider, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader} from "@mui/material";
+import {
+    Chip,
+    Divider,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    ListSubheader,
+    Typography
+} from "@mui/material";
 import {useRouter} from "next/router";
 import {
     AutoGraphRounded,
@@ -43,7 +52,7 @@ export default function Tools() {
                             <ListItemIcon>
                                 <FastfoodRounded/>
                             </ListItemIcon>
-                            <ListItemText primary="Расчет поставки"
+                            <ListItemText primary={"Расчет поставки"}
                                           secondary={"Расчет необходимого для заказа количества охлажденного куриного п/ф"}/>
                             <NavigateNextRounded/>
                         </ListItemButton>

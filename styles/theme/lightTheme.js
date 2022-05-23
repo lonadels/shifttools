@@ -5,8 +5,14 @@ const lightTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: '#2a5cfc'
-        }
+            main: '#3e6aff'
+        },
+        success: {
+            main: '#3a9f50'
+        },
+        secondary: {
+            main: '#606167'
+        },
     },
 }, baseTheme);
 

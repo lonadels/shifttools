@@ -5,15 +5,15 @@ import {ToggleButton, ToggleButtonGroup} from "@mui/lab";
 import {
     AnimationRounded,
     AutoFixHighRounded, BugReportRounded,
-    DarkModeRounded, HeadsetMicRounded, HelpOutlineRounded,
+    DarkModeRounded, GitHub, HeadsetMicRounded, HelpOutlineRounded,
     InfoRounded,
-    LightModeRounded,
+    LightModeRounded, LogoutRounded,
     ManageAccountsRounded,
     OpenInNewRounded,
     PaletteRounded, QuestionMarkRounded
 } from "@mui/icons-material";
 import {
-    Avatar, Divider,
+    Avatar, Divider, Link,
     List,
     ListItem,
     ListItemButton,
@@ -21,13 +21,14 @@ import {
     ListItemText,
     ListSubheader,
     Paper,
-    Stack,
+    Stack, SvgIcon,
     Switch,
     Typography
 } from "@mui/material";
 import {useBooleanState} from "webrix/hooks";
 
 import * as packageInfo from '../package.json';
+import {useRouter} from "next/router";
 
 const version = packageInfo.version;
 
@@ -36,10 +37,12 @@ export default function Index() {
         //setAlignment(newAlignment);
     };
 
+    const router = useRouter();
+
     const checked = useBooleanState(false);
-    return (<Box sx={{py: 2}}>
+    return (<Box sx={{py: 2.5}}>
             <Container sx={{p: 0}} maxWidth={'md'}>
-                <Container sx={{p: {
+                <Container sx={{px: {
                     sm: 2
                     }}}>
                     <Paper variant={"outlined"}>
@@ -98,14 +101,16 @@ export default function Index() {
                     </ListItemButton>
                 </List>
                 <List subheader={<ListSubheader>О приложении</ListSubheader>}>
-                    <ListItem>
+                    <ListItemButton>
                         <ListItemIcon>
                             <InfoRounded/>
                         </ListItemIcon>
                         <ListItemText id="switch-list-label-wifi" primary="Версия"
                                       secondary={version}/>
-                    </ListItem>
-                    <ListItemButton>
+                    </ListItemButton>
+                    <ListItemButton onClick={() => {
+                        window.open("https://vk.com/swiftof")
+                    }}>
                         <ListItemIcon>
                             <ManageAccountsRounded/>
                         </ListItemIcon>
@@ -113,21 +118,30 @@ export default function Index() {
                                       secondary="SwiftSoft"/>
                         <OpenInNewRounded/>
                     </ListItemButton>
+                    <ListItemButton onClick={() => {
+                        window.open("https://github.com/lonadels/shifttools")
+                    }}>
+                        <ListItemIcon>
+                            <GitHub />
+                        </ListItemIcon>
+                        <ListItemText id="switch-list-label-wifi" primary="Исходный код"
+                                      secondary="GitHub"/>
+                        <OpenInNewRounded/>
+                    </ListItemButton>
                 </List>
-                <List subheader={<ListSubheader>Помощь</ListSubheader>}>
+                <Divider variant={"middle"} />
+                <List>
                     <ListItemButton>
                         <ListItemIcon>
                             <HeadsetMicRounded/>
                         </ListItemIcon>
                         <ListItemText id="switch-list-label-wifi" primary="Поддержка"/>
-                        <OpenInNewRounded/>
                     </ListItemButton>
-                    <ListItemButton>
+                    <ListItemButton >
                         <ListItemIcon>
-                            <BugReportRounded/>
+                            <LogoutRounded color={"error"}/>
                         </ListItemIcon>
-                        <ListItemText id="switch-list-label-wifi" primary="Сообщить об ошибке"/>
-                        <OpenInNewRounded/>
+                        <ListItemText color={"error"} id="switch-list-label-wifi" primary={<Typography color={"error"}>Выйти</Typography>}/>
                     </ListItemButton>
                 </List>
             </Container>
