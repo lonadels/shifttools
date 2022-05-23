@@ -223,7 +223,7 @@ export default function Hours() {
                     breaks: 0,
                     comments: "",
                     workTime: (item) => {
-                        let rawTime = differenceInMinutes(item.endTime < item.startTime ? addDays(item.endTime, 1) : item.endTime, addMinutes(item.startTime, parseFloat(item.breaks * 30))) / 60;
+                        let rawTime = differenceInMinutes(item.endTime < item.startTime ? addDays(item.endTime, 1) : item.endTime, addMinutes(item.startTime, parseFloat(item.breaks.toString().replace(',', '.')) * 30 )) / 60;
                         return Number(rawTime.toFixed(2));
                         // TODO: refactor this nsfw
                     }
