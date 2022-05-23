@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import {LocalizationProvider, TimePicker} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
@@ -27,18 +27,10 @@ import {TransitionGroup} from 'react-transition-group';
 import {styled} from "@mui/material/styles";
 import {addDays, addMinutes, differenceInMinutes} from "date-fns";
 
-function renderItem({item, handleRemoveFruit, handleChangeStartTime, handleChangeEndTime, handleChangeBreaks}) {
+function renderItem({item, handleRemoveShift, handleChangeStartTime, handleChangeEndTime, handleChangeBreaks}) {
 
     const reg = /^\d+((([.,])\d+)?)$/;
 
-    var correctEndNight = new Date(0, 0, 0, 22) > item.endTime ? addDays(item.endTime, 1) : item.endTime;
-
-    let endAfter22 = differenceInMinutes(correctEndNight, new Date(0, 0, 0, 22));
-    let endAfter6 = differenceInMinutes(item.endTime, new Date(0, 0, 0, 6));
-
-    let nightTime = (endAfter22 + endAfter6) / 60;
-    let dayTime = endAfter6 / 60;
-    let workTime = Number((differenceInMinutes(item.endTime < item.startTime ? addDays(item.endTime, 1) : item.endTime, addMinutes(item.startTime, parseFloat(item.breaks * 30))) / 60).toFixed(2));
     return (
         <Paper variant={"outlined"}>
             <Container sx={{py: 2}}>
@@ -101,15 +93,15 @@ function renderItem({item, handleRemoveFruit, handleChangeStartTime, handleChang
                               alignItems="center">
                             <Grid item>
                                 <Stack direction={"row"}
-                                       spacing={0.5}><ScheduleRounded/><Typography>{workTime}</Typography></Stack>
+                                       spacing={0.5}><ScheduleRounded/><Typography>{item.workTime(item)}</Typography></Stack>
                             </Grid>
                             <Grid item sx={{opacity: 0.5}}>
                                 <Stack direction={"row"}
-                                       spacing={0.5}><NightsStayRounded/><Typography>{nightTime}</Typography></Stack>
+                                       spacing={0.5}><NightsStayRounded/><Typography>{0}</Typography></Stack>
                             </Grid>
                             <Grid item sx={{opacity: 0.5}}>
                                 <Stack direction={"row"}
-                                       spacing={0.5}><LightModeRounded/><Typography>{dayTime}</Typography></Stack>
+                                       spacing={0.5}><LightModeRounded/><Typography>{0}</Typography></Stack>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -119,7 +111,7 @@ function renderItem({item, handleRemoveFruit, handleChangeStartTime, handleChang
                             variant={"outlined"}
                             size={"large"}
                             color={"error"}
-                            onClick={() => handleRemoveFruit(item)}
+                            onClick={() => handleRemoveShift(item)}
                         >
                             <DeleteRounded/> Удалить
                         </Button>
@@ -139,6 +131,7 @@ const StyledBadge = styled(Badge)(({theme}) => ({
 
 export default function Hours() {
     const [open, setOpen] = React.useState(false);
+    const [total, setTotal] = React.useState(0);
     const [alert, setAlert] = React.useState(true);
     const [restrictTime, setRestrictTime] = React.useState(new Date(0, 0, 0, 0));
 
@@ -147,6 +140,7 @@ export default function Hours() {
     };
 
     const [shifts, setShifts] = useState([]);
+
     const handleAddShift = () => {
         setShifts((state) => {
             for (var id = 0; id < Number.MAX_VALUE; id++) {
@@ -154,11 +148,23 @@ export default function Hours() {
                     break;
             }
             return [
-                {id: id, startTime: new Date(0, 0, 0, 0), endTime: new Date(0, 0, 0, 0), breaks: 0, comments: ""},
+                {id: id, startTime: new Date(0, 0, 0, 0), endTime: new Date(0, 0, 0, 0), breaks: 0, comments: "", workTime: (item) => {
+                        let rawTime = differenceInMinutes(item.endTime < item.startTime ? addDays(item.endTime, 1) : item.endTime, addMinutes(item.startTime, parseFloat(item.breaks * 30))) / 60;
+                        return Number(rawTime.toFixed(2));
+                        // TODO: refactor this nsfw
+                    }},
                 ...state
             ]
         });
     };
+
+    useEffect(()=>{
+        let total = 0;
+        shifts.map((item, index) => {
+            total += item.workTime(item);
+        });
+        setTotal(total);
+    }, [shifts]);
 
     const handleRemoveShift = (i) => {
         setShifts((prev) => [...prev.filter((item) => item !== i)]);
@@ -170,6 +176,7 @@ export default function Hours() {
             return {...item, startTime: value};
         })]);
     };
+
     const handleChangeEndTime = (i, value) => {
         setShifts((prev) => [...prev.map((item, index) => {
             if (item.id !== i.id) return item;
@@ -218,7 +225,7 @@ export default function Hours() {
                                         <ul>
                                             {renderItem({
                                                 item,
-                                                handleRemoveFruit: handleRemoveShift,
+                                                handleRemoveShift,
                                                 handleChangeStartTime,
                                                 handleChangeEndTime,
                                                 handleChangeBreaks,
@@ -274,7 +281,7 @@ export default function Hours() {
                                                alignItems="center"
                                                spacing={0.5}>
                                             <ScheduleRounded fontSize={"medium"}/>
-                                            <Typography fontSize={"x-large"}>0</Typography>
+                                            <Typography fontSize={"x-large"}>{total}</Typography>
                                         </Stack>
                                         <Typography fontSize={"small"} color={"text.secondary"}>всего</Typography>
                                     </Stack>
