@@ -36,6 +36,7 @@
     "react-redux": "^8.0.1",
     "react-transition-group": "^4.4.2",
     "react-window": "^1.8.7",
+    "sugar": "^2.0.6",
     "webrix": "^1.5.10"
   },
   "devDependencies": {
