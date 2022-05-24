@@ -33,7 +33,7 @@ import {
     DeleteOutlineOutlined,
     LightModeRounded,
     NightsStayRounded,
-    RestaurantMenuRounded,
+    RestaurantMenuRounded, SavingsRounded,
     ScheduleRounded,
 } from "@mui/icons-material";
 
@@ -79,47 +79,29 @@ function renderItem({
                                     }}
                                 >
                                     <ListSubheader>Менеджеры</ListSubheader>
-                                    <MenuItem value={1}>
-                                        <ListItemText>
-                                            <Stack direction={"row"} spacing={0.5}>
-                                                <Typography>Яфарова Р.</Typography>
-                                                <Typography color={"text.secondary"}>300 ₽/ч</Typography>
+                                        <MenuItem value={1}>
+                                            <ListItemText>
+                                                <Stack direction={"column"} spacing={0.5}>
+                                                    <Typography>Яфарова Р.</Typography>
+                                                    <Typography color={"text.secondary"}>300 ₽/ч</Typography>
+
+                                                </Stack>
+                                            </ListItemText>
+
+                                            <Stack direction={"row"} spacing={1}>
+                                                <Chip variant={"outlined"} size={"small"} color={"error"}
+                                                      label="General Manager"/>
                                             </Stack>
-                                        </ListItemText>
-                                        <Chip variant={"outlined"} size={"small"} color={"error"}
-                                              label="General Manager"/>
-                                    </MenuItem>
+                                        </MenuItem>
                                     <MenuItem value={2}>
                                         <ListItemText>
-                                            <Stack direction={"row"} spacing={0.5}>
-                                                <Typography>Анисимова И.</Typography>
-                                                <Typography color={"text.secondary"}>280 ₽/ч</Typography>
-                                            </Stack>
-                                        </ListItemText>
-                                        <Chip variant={"outlined"} size={"small"} color={"primary"}
-                                              label="Assistent Manager"/>
-                                    </MenuItem>
-                                    <MenuItem value={3}>
-                                        <ListItemText>
-                                            <Stack direction={"row"} spacing={0.5}>
-                                                <Typography>АверкиевН.</Typography>
-                                                <Typography color={"text.secondary"}>232 ₽/ч</Typography>
-                                            </Stack>
-                                        </ListItemText>
-                                        <Stack direction={"row"} spacing={1}>
-                                            <Chip icon={<RestaurantMenuRounded/>} size={"small"} color={"secondary"}
-                                                  label="Product"/>
-                                            <Chip variant={"outlined"} size={"small"} color={"primary"}
-                                                  label="Shift Manager"/>
-                                        </Stack>
-                                    </MenuItem>
-                                    <MenuItem value={4}>
-                                        <ListItemText>
-                                            <Stack direction={"row"} spacing={0.5}>
+                                            <Stack direction={"column"} spacing={0.5}>
                                                 <Typography>Маллаева Е.</Typography>
                                                 <Typography color={"text.secondary"}>220 ₽/ч</Typography>
+
                                             </Stack>
                                         </ListItemText>
+
                                         <Stack direction={"row"} spacing={1}>
                                             <Chip icon={<ConstructionRounded/>} size={"small"} color={"secondary"}
                                                   label="Facility"/>
@@ -128,32 +110,16 @@ function renderItem({
                                             <Chip variant={"outlined"} size={"small"} color={"secondary"} label="IT"/>
                                         </Stack>
                                     </MenuItem>
-                                    <MenuItem value={5}>
-                                        <ListItemText>
-                                            <Stack direction={"row"} spacing={0.5}>
-                                                <Typography>Бекмухамбетова А.</Typography>
-                                                <Typography color={"text.secondary"}>220 ₽/ч</Typography>
-                                            </Stack>
-                                        </ListItemText>
-                                        <Chip variant={"outlined"} size={"small"} color={"primary"}
-                                              label="Junior Shift Manager"/>
-                                    </MenuItem>
-                                    <MenuItem value={6}>
-                                        <ListItemText>
-                                            <Stack direction={"row"} spacing={0.5}>
-                                                <Typography>Шинкарук В.</Typography>
-                                                <Typography color={"text.secondary"}>180 ₽/ч</Typography>
-                                            </Stack>
-                                        </ListItemText>
-                                        <Stack direction={"row"} spacing={1}>
-                                            <Chip variant={"outlined"} size={"small"} color={"primary"}
-                                                  label="Junior Shift Manager"/>
-                                            <Chip variant={"outlined"} size={"small"} color={"secondary"} label="IT"/>
-                                        </Stack>
-                                    </MenuItem>
                                     <ListSubheader>Сотрудники</ListSubheader>
-                                    <MenuItem value={7}>
-                                        <ListItemText>Новомлинская Е.</ListItemText>
+                                    <MenuItem value={3}>
+                                        <ListItemText>
+                                            <Stack direction={"column"} spacing={0.5}>
+                                                <Typography>Новомлинская Е.</Typography>
+                                                <Typography color={"text.secondary"}>165 ₽/ч</Typography>
+
+                                            </Stack>
+                                        </ListItemText>
+
                                         <Stack direction={"row"} spacing={1}>
                                             <Chip variant={"outlined"} size={"small"} color={"warning"}
                                                   label="Instructor"/>
@@ -226,6 +192,10 @@ function renderItem({
                             <Grid item sx={{opacity: 0.5}}>
                                 <Stack direction={"row"}
                                        spacing={0.5}><LightModeRounded/><Typography>{0}</Typography></Stack>
+                            </Grid>
+                            <Grid item sx={{opacity: 0.5}}>
+                                <Stack direction={"row"}
+                                       spacing={0.5}><SavingsRounded/><Typography>{0}</Typography> <Typography color={"text.secondary"}>₽</Typography></Stack>
                             </Grid>
                         </Grid>
                     </Grid>
