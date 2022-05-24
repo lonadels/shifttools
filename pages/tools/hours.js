@@ -5,26 +5,35 @@ import {LocalizationProvider, TimePicker} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {
     Badge,
-    Collapse,
+    Chip,
     Container,
     Divider,
-    Fab, Fade,
-    Grid, Grow,
+    Fab,
+    Fade,
+    FormControl,
+    Grid,
+    Grow,
     IconButton,
+    InputLabel,
     List,
-    ListItem, ListItemButton, ListItemText,
+    ListItem,
+    ListItemText,
+    ListSubheader,
+    MenuItem,
     Paper,
-    Stack, Switch,
+    Select,
+    Stack,
     TextField,
     Typography
 } from "@mui/material";
 import {ru} from "date-fns/locale";
 import {
     AddRounded,
+    ConstructionRounded,
     DeleteOutlineOutlined,
-    DeleteRounded,
     LightModeRounded,
     NightsStayRounded,
+    RestaurantMenuRounded,
     ScheduleRounded,
 } from "@mui/icons-material";
 
@@ -37,18 +46,123 @@ import {styled} from "@mui/material/styles";
 import {addDays, addMinutes, differenceInMinutes} from "date-fns";
 import * as PropTypes from "prop-types";
 
-function renderItem({item, handleRemoveShift, handleChangeStartTime, handleChangeEndTime, handleChangeBreaks}) {
+function renderItem({
+                        item,
+                        handleRemoveShift,
+                        handleChangeStartTime,
+                        handleChangeEndTime,
+                        handleChangeBreaks,
+                        handleChangeEmployee
+                    }) {
 
     const reg = /^\d+((([.,])\d+)?)$/;
 
     return (
         <Paper variant={"outlined"} id={`shift_${item.id}`}>
-            <Container sx={{py: 2}}>
+            <Container sx={{py: 2, p: 3}}>
                 <ListItem
                     key={item.id}
                     disableGutters
                 >
                     <Grid container spacing={2} columns={{xs: 2, sm: 3}}>
+                        <Grid item sm={3} xs={2}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Сотрудник</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={item.employee}
+                                    label="Сотрудник"
+                                    onChange={(e) => {
+                                        var newValue = e.target.value;
+                                        handleChangeEmployee(item, newValue)
+                                    }}
+                                >
+                                    <ListSubheader>Менеджеры</ListSubheader>
+                                    <MenuItem value={1}>
+                                        <ListItemText>
+                                            <Stack direction={"row"} spacing={0.5}>
+                                                <Typography>Яфарова Р.</Typography>
+                                                <Typography color={"text.secondary"}>300 ₽/ч</Typography>
+                                            </Stack>
+                                        </ListItemText>
+                                        <Chip variant={"outlined"} size={"small"} color={"error"}
+                                              label="General Manager"/>
+                                    </MenuItem>
+                                    <MenuItem value={2}>
+                                        <ListItemText>
+                                            <Stack direction={"row"} spacing={0.5}>
+                                                <Typography>Анисимова И.</Typography>
+                                                <Typography color={"text.secondary"}>280 ₽/ч</Typography>
+                                            </Stack>
+                                        </ListItemText>
+                                        <Chip variant={"outlined"} size={"small"} color={"primary"}
+                                              label="Assistent Manager"/>
+                                    </MenuItem>
+                                    <MenuItem value={3}>
+                                        <ListItemText>
+                                            <Stack direction={"row"} spacing={0.5}>
+                                                <Typography>АверкиевН.</Typography>
+                                                <Typography color={"text.secondary"}>232 ₽/ч</Typography>
+                                            </Stack>
+                                        </ListItemText>
+                                        <Stack direction={"row"} spacing={1}>
+                                            <Chip icon={<RestaurantMenuRounded/>} size={"small"} color={"secondary"}
+                                                  label="Product"/>
+                                            <Chip variant={"outlined"} size={"small"} color={"primary"}
+                                                  label="Shift Manager"/>
+                                        </Stack>
+                                    </MenuItem>
+                                    <MenuItem value={4}>
+                                        <ListItemText>
+                                            <Stack direction={"row"} spacing={0.5}>
+                                                <Typography>Маллаева Е.</Typography>
+                                                <Typography color={"text.secondary"}>220 ₽/ч</Typography>
+                                            </Stack>
+                                        </ListItemText>
+                                        <Stack direction={"row"} spacing={1}>
+                                            <Chip icon={<ConstructionRounded/>} size={"small"} color={"secondary"}
+                                                  label="Facility"/>
+                                            <Chip variant={"outlined"} size={"small"} color={"primary"}
+                                                  label="Shift Manager"/>
+                                            <Chip variant={"outlined"} size={"small"} color={"secondary"} label="IT"/>
+                                        </Stack>
+                                    </MenuItem>
+                                    <MenuItem value={5}>
+                                        <ListItemText>
+                                            <Stack direction={"row"} spacing={0.5}>
+                                                <Typography>Бекмухамбетова А.</Typography>
+                                                <Typography color={"text.secondary"}>220 ₽/ч</Typography>
+                                            </Stack>
+                                        </ListItemText>
+                                        <Chip variant={"outlined"} size={"small"} color={"primary"}
+                                              label="Junior Shift Manager"/>
+                                    </MenuItem>
+                                    <MenuItem value={6}>
+                                        <ListItemText>
+                                            <Stack direction={"row"} spacing={0.5}>
+                                                <Typography>Шинкарук В.</Typography>
+                                                <Typography color={"text.secondary"}>180 ₽/ч</Typography>
+                                            </Stack>
+                                        </ListItemText>
+                                        <Stack direction={"row"} spacing={1}>
+                                            <Chip variant={"outlined"} size={"small"} color={"primary"}
+                                                  label="Junior Shift Manager"/>
+                                            <Chip variant={"outlined"} size={"small"} color={"secondary"} label="IT"/>
+                                        </Stack>
+                                    </MenuItem>
+                                    <ListSubheader>Сотрудники</ListSubheader>
+                                    <MenuItem value={7}>
+                                        <ListItemText>Новомлинская Е.</ListItemText>
+                                        <Stack direction={"row"} spacing={1}>
+                                            <Chip variant={"outlined"} size={"small"} color={"warning"}
+                                                  label="Instructor"/>
+                                            <Chip variant={"outlined"} size={"small"} color={"secondary"} label="IT"/>
+                                        </Stack>
+                                    </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
                         <Grid item xs={1}>
                             <TimePicker
                                 label="Начало смены"
@@ -121,6 +235,7 @@ function renderItem({item, handleRemoveShift, handleChangeStartTime, handleChang
                             variant={"outlined"}
                             size={"large"}
                             color={"error"}
+                            edge={"end"}
                             onClick={() => handleRemoveShift(item)}
                         >
                             <DeleteOutlineOutlined/>
@@ -143,11 +258,11 @@ function Summary(props) {
     return <Paper variant={"outlined"} sx={{mb: 2}}>
         <Container sx={{py: 4}}>
             <Stack
-                  direction="row"
-                  divider={<Divider orientation="vertical" flexItem />}
-                  justifyContent="space-evenly"
-                  spacing={{xs: 2, sm: 3, md: 4}}
-                  alignItems="center">
+                direction="row"
+                divider={<Divider orientation="vertical" flexItem/>}
+                justifyContent="space-evenly"
+                spacing={{xs: 2, sm: 3, md: 4}}
+                alignItems="center">
                 <Grid item>
                     <Stack direction="column"
                            justifyContent="center"
@@ -223,7 +338,7 @@ export default function Hours() {
                     breaks: 0,
                     comments: "",
                     workTime: (item) => {
-                        let rawTime = differenceInMinutes(item.endTime < item.startTime ? addDays(item.endTime, 1) : item.endTime, addMinutes(item.startTime, parseFloat(item.breaks.toString().replace(',', '.')) * 30 )) / 60;
+                        let rawTime = differenceInMinutes(item.endTime < item.startTime ? addDays(item.endTime, 1) : item.endTime, addMinutes(item.startTime, parseFloat(item.breaks.toString().replace(',', '.')) * 30)) / 60;
                         return Number(rawTime.toFixed(2));
                         // TODO: refactor this nsfw
                     }
@@ -261,12 +376,19 @@ export default function Hours() {
     const handleChangeBreaks = (i, value) => {
         setShifts((prev) => [...prev.map((item, index) => {
             if (item.id !== i.id) return item;
-            return {...item, breaks: value, previousBreaks: i.breaks};
+            return {...item, breaks: value};
+        })]);
+    };
+    const handleChangeEmployee = (i, value) => {
+        setShifts((prev) => [...prev.map((item, index) => {
+            if (item.id !== i.id) return item;
+            return {...item, employee: value};
         })]);
     };
 
     const addButton = (
         <Fab
+
             sx={{
                 position: 'fixed',
                 bottom: {
@@ -291,7 +413,7 @@ export default function Hours() {
                 {addButton}
                 <LocalizationProvider dateAdapter={AdapterDateFns} locale={ru}>
 
-                {/*<Paper variant={"outlined"} sx={{mb: 2}}>
+                    {/*<Paper variant={"outlined"} sx={{mb: 2}}>
                     <ListItemButton onClick={handleClick}>
                         <ListItemText secondary={"Расчет до определенного времени"}>
                             Ограничивать время
@@ -318,7 +440,7 @@ export default function Hours() {
                     </Collapse>
                 </Paper>
                 <Divider variant={"middle"} sx={{mb: 2}}/>*/}
-                <Summary total={total}/>
+                    <Summary total={total}/>
 
                     <Fade in={shifts.length > 0} unmountOnExit><Divider variant={"middle"} sx={{mb: 1}}/></Fade>
                     <List sx={{
@@ -338,6 +460,7 @@ export default function Hours() {
                                                 handleChangeStartTime,
                                                 handleChangeEndTime,
                                                 handleChangeBreaks,
+                                                handleChangeEmployee
                                             })}
                                         </ul>
                                     </li>
@@ -345,7 +468,7 @@ export default function Hours() {
                             ))}
                         </TransitionGroup>
                     </List>
-                    <Box id={`end`} />
+                    <Box id={`end`}/>
 
                 </LocalizationProvider>
             </Container>
