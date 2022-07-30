@@ -28,7 +28,6 @@ const MyApp = (props) => {
         document.addEventListener('contextmenu', event => event.preventDefault());
     }, []);
 
-
     return (
         <CacheProvider value={emotionCache}>
             <ThemeProvider theme={theme}>

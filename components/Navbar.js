@@ -20,8 +20,6 @@ const Navbar = (props) => {
     const router = useRouter()
 
     const Links = [
-        {to: "staff", label: "Персонал", icon: [GroupRounded, GroupOutlined]},
-        {to: "transfers", label: "Трансферы", icon: [LocalShippingRounded, LocalShippingOutlined]},
         {to: "tools", label: "Инструменты", icon: [ConstructionRounded, ConstructionOutlined]},
         {to: "", label: "Профиль", icon: [AccountCircleRounded, AccountCircleOutlined]},
     ];
