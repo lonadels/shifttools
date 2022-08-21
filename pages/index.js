@@ -32,10 +32,17 @@ import {useRouter} from "next/router";
 
 const version = packageInfo.version;
 
+import {fetchSubject, selectSubject, wrapper} from '../components/store';
+import {useDispatch, useSelector} from "react-redux";
+import {themeSetAuto, themeSetDark, themeSetLight} from "../services/propertiesSlice";
+
 export default function Index() {
     const handleChange = (event, newAlignment) => {
         //setAlignment(newAlignment);
     };
+
+    const theme = useSelector((state) => state.properties.theme);
+    const dispatch = useDispatch()
 
     const router = useRouter();
 
@@ -76,13 +83,13 @@ export default function Index() {
                         <ToggleButtonGroup
                             color="primary"
                             size="small"
-                            value="system"
+                            value={ theme === -1 ? "dark" : (theme === 0 ? "auto" : "light") }
                             exclusive
                             onChange={handleChange}
-                        >
-                            <ToggleButton disabled value="light"><LightModeRounded/></ToggleButton>
-                            <ToggleButton disabled value="dark"><DarkModeRounded/></ToggleButton>
-                            <ToggleButton value="system"><AutoFixHighRounded/></ToggleButton>
+                        > {/* onClick={() => dispatch(decrement())} */}
+                            <ToggleButton onClick={() => dispatch(themeSetLight())} value="light"><LightModeRounded/></ToggleButton>
+                            <ToggleButton onClick={() => dispatch(themeSetDark())} value="dark"><DarkModeRounded/></ToggleButton>
+                            <ToggleButton onClick={() => dispatch(themeSetAuto())} value="auto"><AutoFixHighRounded/></ToggleButton>
                         </ToggleButtonGroup>
                     </ListItem>
                     <ListItemButton disabled>
